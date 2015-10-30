@@ -16,8 +16,9 @@ And of course all of this is _complete_ overkill for a simple ping-pong scoreboa
 ### Steps to install
 1. Install Meteor.  [link for instructions](https://www.meteor.com/install)
   * hint - you only need to run this command `curl https://install.meteor.com/ | sh`
-2. download repo
-3. Edit the file `/server/startup.js`
+2. Download repo
+3. (Optional) Add a .png file for your app logo under `/public/images/logo.png`
+4. Edit the file `/server/startup.js`
 ```
 //change this part to whatever players you want to be included in your list.  
 //Add as many as needed to the array
@@ -31,3 +32,4 @@ var initialPlayers = [
 
 Boom! project will initialize and run (defaults to port 300)  
 [http://localhost:3000](http://localhost:3000)
+
