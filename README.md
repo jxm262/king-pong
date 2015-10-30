@@ -19,5 +19,5 @@ And of course all of this is _complete_ overkill for a simple ping-pong scoreboa
 2. download repo
 3. navigate to project directory and run command `meteor`
 
-Boom! project will initialize and run (defaults to port 300)
-Visit - http://localhost:3000 to see the site
+Boom! project will initialize and run (defaults to port 300)  
+[http://localhost:3000](http://localhost:3000)
