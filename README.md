@@ -30,6 +30,6 @@ var initialPlayers = [
 
 * navigate to project directory and run command `meteor`
 
-Boom! project will initialize and run (defaults to port 300)  
+Boom! project will initialize and run (defaults to port 3000)  
 [http://localhost:3000](http://localhost:3000)
 
