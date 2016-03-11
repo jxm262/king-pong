@@ -1,0 +1,24 @@
+{
+  "name": "king-pong",
+  "version": "1.0.0",
+  "description": "Be the King of Ping Pong",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jxm262/king-pong.git"
+  },
+  "keywords": [
+    "ping",
+    "pong",
+    "scoreboard"
+  ],
+  "author": "Justin Maat <jxm262@gmail.com> (http://jmaat.me/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jxm262/king-pong/issues"
+  },
+  "homepage": "https://github.com/jxm262/king-pong#readme"
+}
