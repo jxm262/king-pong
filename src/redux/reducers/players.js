@@ -3,13 +3,7 @@ import { combineReducers } from 'redux'
 import * as actions from '../actions'
 
 
-const defaultPlayers = [
-    {name: 'Justin', score: 1},
-    {name: 'Bob', score: 2},
-    {name: 'Bill', score: 5}
-]
-
-function players(state = defaultPlayers, action) {
+function players(state = [], action) {
     switch (action.type) {
         case 'SELECT_PLAYER':
             return state.map(player => {
@@ -28,6 +22,9 @@ function players(state = defaultPlayers, action) {
                     ? Object.assign({}, action.player, {selected: false})
                     : Object.assign({}, player, {selected: false})
             })
+
+        case 'RECEIVE_FETCH_PLAYERS':
+            return action.players
 
         default:
             return state

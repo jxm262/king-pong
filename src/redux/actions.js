@@ -42,7 +42,7 @@ export const fetchPlayers = () => {
         .get('http://127.0.0.1:8080/playerData.json')
         .set('Accept', 'application/json')
         .end((err, response) => {
-          dispatch(receiveFetchPlayers(response))
+          dispatch(receiveFetchPlayers(response.body))
         })
   }
 }

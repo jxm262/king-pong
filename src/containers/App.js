@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { selectPlayer, updateScore } from '../redux/actions'
+import { selectPlayer, updateScore, fetchPlayers } from '../redux/actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 import Scoreboard from '../components/Scoreboard'
@@ -19,6 +19,10 @@ class App extends Component {
 
     updateScore = (player) => {
         this.props.dispatch(updateScore(player))
+    }
+
+    componentDidMount = () => {
+        this.props.dispatch(fetchPlayers())
     }
 
     render() {
