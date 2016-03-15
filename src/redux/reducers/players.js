@@ -1,9 +1,6 @@
 import { combineReducers } from 'redux'
+import * as actions from '../actions'
 
-//import {
-//    SELECT_REDDIT, INVALIDATE_REDDIT,
-//    REQUEST_POSTS, RECEIVE_POSTS
-//} from '../actions'
 
 const defaultPlayers = [
     {name: 'Justin', score: 1},
@@ -13,8 +10,13 @@ const defaultPlayers = [
 
 function players(state = defaultPlayers, action) {
     switch (action.type) {
-        case 'SELECT_REDDIT':
-            return action.reddit
+        case 'SELECT_PLAYER':
+            debugger
+            return state.map(player => {
+                return player.name === action.player.name
+                    ? Object.assign({}, action.player, {selected: true})
+                    : player
+            })
         default:
             return state
     }

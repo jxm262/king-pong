@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from '../redux/actions'
+import { selectPlayer } from '../redux/actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 import Scoreboard from '../components/Scoreboard'
@@ -13,9 +13,12 @@ class App extends Component {
         super(props)
     }
 
+    selectPlayer = (player) => {
+        this.props.dispatch(selectPlayer(player))
+    }
+
     render() {
         const { selectedReddit, posts, isFetching, lastUpdated } = this.props
-        debugger
         return (
             <div>
                 <div className='outer'>
@@ -23,7 +26,7 @@ class App extends Component {
                     <h1 className='title'>ScoreBoard</h1>
                     <div className='subtitle'>Select a player to give them points</div>
 
-                    <Scoreboard players={ this.props.players }/>
+                    <Scoreboard players={ this.props.players } selectPlayer={ this.selectPlayer } />
 
                     <SelectedPlayer selectedPlayer={ _.find(this.props.players, {selected: true }) } />
 
