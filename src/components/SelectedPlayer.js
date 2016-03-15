@@ -5,9 +5,8 @@ import Message from './Message'
 
 class SelectedPlayer extends Component {
     render() {
-debugger
         const content = (this.props.selectedPlayer)
-            ? <Details player={ this.props.selectedPlayer } />
+            ? <Details player={ this.props.selectedPlayer } updateScore={ this.props.updateScore } />
             : <Message />
 
         return (

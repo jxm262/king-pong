@@ -6,7 +6,7 @@ class Details extends Component {
         return (
             <div className='details'>
                 <div className='name'>{ this.props.player.name }</div>
-                <button className='inc'>Add a win</button>
+                <button className='inc' onClick={ e => this.props.updateScore(this.props.player) }>Add a win</button>
             </div>
         )
     }

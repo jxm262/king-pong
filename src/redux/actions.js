@@ -1,9 +1,5 @@
-import fetch from 'isomorphic-fetch'
+import request from 'superagent'
 
-export const REQUEST_POSTS = 'REQUEST_POSTS'
-export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const SELECT_REDDIT = 'SELECT_REDDIT'
-export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
 
 export function selectPlayer(player) {
   return {
@@ -12,46 +8,51 @@ export function selectPlayer(player) {
   }
 }
 
-function requestPosts(reddit) {
+function requestUpdateScore() {
   return {
-    type: REQUEST_POSTS,
-    reddit
+    type: 'REQUEST_UPDATE_SCORE'
   }
 }
 
-function receivePosts(reddit, json) {
+function receieveUpdateScore(player) {
   return {
-    type: RECEIVE_POSTS,
-    reddit: reddit,
-    posts: json.data.children.map(child => child.data),
-    receivedAt: Date.now()
+    type: 'RECEIVE_UPDATE_SCORE',
+    player: player
   }
 }
 
-function fetchPosts(reddit) {
-  return dispatch => {
-    dispatch(requestPosts(reddit))
-    return fetch(`https://www.reddit.com/r/${reddit}.json`)
-      .then(response => response.json())
-      .then(json => dispatch(receivePosts(reddit, json)))
+function requestFetchPlayers() {
+  return {
+    type: 'REQUEST_FETCH_PLAYERS'
   }
 }
 
-function shouldFetchPosts(state, reddit) {
-  const posts = state.postsByReddit[reddit]
-  if (!posts) {
-    return true
+function receiveFetchPlayers(players) {
+  return {
+    type: 'RECEIVE_FETCH_PLAYERS',
+    players: players
   }
-  if (posts.isFetching) {
-    return false
-  }
-  return posts.didInvalidate
 }
 
-export function fetchPostsIfNeeded(reddit) {
-  return (dispatch, getState) => {
-    if (shouldFetchPosts(getState(), reddit)) {
-      return dispatch(fetchPosts(reddit))
-    }
+export const fetchPlayers = () => {
+  return function (dispatch) {
+    dispatch(requestFetchPlayers())
+
+    return request
+        .get('http://127.0.0.1:8080/playerData.json')
+        .set('Accept', 'application/json')
+        .end((err, response) => {
+          dispatch(receiveFetchPlayers(response))
+        })
+  }
+}
+
+export const updateScore = (player) => {
+  return function (dispatch) {
+    dispatch(requestUpdateScore())
+
+    const updatedPlayer = Object.assign({}, player, {score: player.score+1})
+
+    dispatch(receieveUpdateScore(updatedPlayer))
   }
 }

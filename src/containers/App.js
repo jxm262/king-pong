@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react'
 import _ from 'lodash'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { selectPlayer } from '../redux/actions'
+import { selectPlayer, updateScore } from '../redux/actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 import Scoreboard from '../components/Scoreboard'
@@ -17,8 +17,11 @@ class App extends Component {
         this.props.dispatch(selectPlayer(player))
     }
 
+    updateScore = (player) => {
+        this.props.dispatch(updateScore(player))
+    }
+
     render() {
-        const { selectedReddit, posts, isFetching, lastUpdated } = this.props
         return (
             <div>
                 <div className='outer'>
@@ -26,9 +29,13 @@ class App extends Component {
                     <h1 className='title'>ScoreBoard</h1>
                     <div className='subtitle'>Select a player to give them points</div>
 
-                    <Scoreboard players={ this.props.players } selectPlayer={ this.selectPlayer } />
+                    <Scoreboard
+                        players={ this.props.players }
+                        selectPlayer={ this.selectPlayer } />
 
-                    <SelectedPlayer selectedPlayer={ _.find(this.props.players, {selected: true }) } />
+                    <SelectedPlayer
+                        selectedPlayer={ _.find(this.props.players, {selected: true }) }
+                        updateScore={ this.updateScore } />
 
                 </div>
             </div>
