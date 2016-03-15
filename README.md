@@ -5,31 +5,15 @@ Be the King of Ping Pong.
 This is a very simple scorecard used to keep tally of ping-pong games.  
 
 ## Technical Details
-+ Runs on the [Meteor framework](https://www.meteor.com/)
-  * includes a mongoDB backend
-  * websockets, reactive UI, and all that jazz
-  * easy hot-deploys
-  * easily create a simple mobile app (cordova)
-  
-And of course all of this is _complete_ overkill for a simple ping-pong scoreboard.
+Uses React + Redux 
 
 ### Steps to install
-1. Install Meteor.  [link for instructions](https://www.meteor.com/install)
-  * hint - you only need to run this command `curl https://install.meteor.com/ | sh`
-2. Download repo
-3. (Optional) Add a .png file for your app logo under `/public/images/logo.png`
-4. Edit the file `/server/startup.js`
-```
-//change this part to whatever players you want to be included in your list.  
-//Add as many as needed to the array
-var initialPlayers = [
-    "Player 1",  
-    "Player 2"
-];
-```
+1. Install Node (version 4+)  
+2. clone the repo
+3. run `npm install`
+4. to run locally - `npm run dev`
 
-* navigate to project directory and run command `meteor`
 
-Boom! project will initialize and run (defaults to port 3000)  
-[http://localhost:3000](http://localhost:3000)
+Boom! project will initialize and run (defaults to port 8080)  
+[http://127.0.0.1:8080](http://127.0.0.1:8080)
 
