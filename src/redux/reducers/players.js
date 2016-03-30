@@ -2,8 +2,14 @@ import _ from 'lodash'
 import { combineReducers } from 'redux'
 import * as actions from '../actions'
 
+const initialState = [
+    { "name": "Justin", "score": 1 },
+    { "name": "Bob",    "score": 2 },
+    { "name": "Bill",   "score": 5 }
+]
 
-function players(state = [], action) {
+function players(state = initialState, action) {
+    debugger
     switch (action.type) {
         case 'SELECT_PLAYER':
             return state.map(player => {

@@ -35,23 +35,24 @@ function receiveFetchPlayers(players) {
 }
 
 export const fetchPlayers = () => {
-  return function (dispatch) {
-    dispatch(requestFetchPlayers())
-
-    const storedPlayers = JSON.parse(localStorage.getItem('players'))
-
-    if (storedPlayers) {
-      dispatch(receiveFetchPlayers(storedPlayers))
-
-    } else {
-      return request
-          .get('http://127.0.0.1:8080/playerData.json')
-          .set('Accept', 'application/json')
-          .end((err, response) => {
-              dispatch(receiveFetchPlayers(response.body))
-          })
-    }
-  }
+  return {type: null}
+  //return function (dispatch) {
+  //  dispatch(requestFetchPlayers())
+  //
+  //  const storedPlayers = null //= JSON.parse(localStorage.getItem('players'))
+  //
+  //  if (storedPlayers) {
+  //    dispatch(receiveFetchPlayers(storedPlayers))
+  //
+  //  } else {
+  //    return request
+  //        .get('http://127.0.0.1:8080/playerData.json')
+  //        .set('Accept', 'application/json')
+  //        .end((err, response) => {
+  //            dispatch(receiveFetchPlayers(response.body))
+  //        })
+  //  }
+  //}
 }
 
 export const updateScore = (player) => {
