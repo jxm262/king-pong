@@ -31,7 +31,6 @@ class App extends Component {
             <div>
                 <Chart />
                 <div className='outer'>
-                    <div className='logo'></div>
                     <h1 className='title'>ScoreBoard</h1>
                     <div className='subtitle'>Select a player to give them points</div>
 
