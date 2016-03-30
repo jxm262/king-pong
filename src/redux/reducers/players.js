@@ -9,7 +9,6 @@ const initialState = [
 ]
 
 function players(state = initialState, action) {
-    debugger
     switch (action.type) {
         case 'SELECT_PLAYER':
             return state.map(player => {

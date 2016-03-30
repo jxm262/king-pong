@@ -5,7 +5,6 @@ import { BarChart } from 'react-d3';
 
 class Chart extends Component {
     render() {
-        debugger
         const values = this.props.players.map(player => {
             return {x: player.name, y: player.score}
         })
