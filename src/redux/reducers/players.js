@@ -17,11 +17,15 @@ function players(state = [], action) {
             return state
 
         case 'RECEIVE_UPDATE_SCORE':
-            return state.map(player => {
+            const newState = state.map(player => {
                 return player.name === action.player.name
                     ? Object.assign({}, action.player, {selected: false})
                     : Object.assign({}, player, {selected: false})
             })
+
+            localStorage.setItem('players', JSON.stringify(newState))
+
+            return newState
 
         case 'RECEIVE_FETCH_PLAYERS':
             return action.players

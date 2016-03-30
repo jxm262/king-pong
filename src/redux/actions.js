@@ -38,12 +38,19 @@ export const fetchPlayers = () => {
   return function (dispatch) {
     dispatch(requestFetchPlayers())
 
-    return request
-        .get('http://127.0.0.1:8080/playerData.json')
-        .set('Accept', 'application/json')
-        .end((err, response) => {
-          dispatch(receiveFetchPlayers(response.body))
-        })
+    const storedPlayers = JSON.parse(localStorage.getItem('players'))
+
+    if (storedPlayers) {
+      dispatch(receiveFetchPlayers(storedPlayers))
+
+    } else {
+      return request
+          .get('http://127.0.0.1:8080/playerData.json')
+          .set('Accept', 'application/json')
+          .end((err, response) => {
+              dispatch(receiveFetchPlayers(response.body))
+          })
+    }
   }
 }
 
