@@ -5,6 +5,7 @@ import { selectPlayer, updateScore, fetchPlayers } from '../redux/actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 import Scoreboard from '../components/Scoreboard'
+import Chart from '../components/Chart'
 import SelectedPlayer from '../components/SelectedPlayer'
 
 
@@ -28,6 +29,7 @@ class App extends Component {
     render() {
         return (
             <div>
+                <Chart />
                 <div className='outer'>
                     <div className='logo'></div>
                     <h1 className='title'>ScoreBoard</h1>
