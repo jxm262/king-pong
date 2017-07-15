@@ -1,7 +1,9 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { BarChart } from 'react-d3';
+import LineChart from './LineChart';
+import BarChart from './BarChart';
+
 
 class Chart extends Component {
     render() {
@@ -16,15 +18,17 @@ class Chart extends Component {
 
         return (
             <div className="chart">
-                <BarChart
-                    data={data}
-                    width={500}
-                    height={200}
-                    title='Score Chart'/>
+                <LineChart id="test-id" hello="thing" />
+                <BarChart id="bar-id" hello="thing" />
             </div>
         )
     }
 }
+//<BarChart
+//    data={data}
+//    width={500}
+//    height={200}
+//    title='Score Chart'/>
 
 function mapStateToProps(state) {
     return { players: state.players }

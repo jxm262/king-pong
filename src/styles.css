@@ -198,8 +198,70 @@ body {
 }
 
 .chart {
-    display: inline-block;
+    /*display: inline-block;*/
     margin-left: 30px;
-    vertical-align: top;
-    margin-top: 100px;
+    /*vertical-align: top;*/
+    margin-top: -100px;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+.line {
+    fill: none;
+    stroke: #7dc7f4;
+    stroke-width: 2px;
+}
+
+.area {
+    fill: rgba(104, 185, 247, 0.08);
+}
+
+.bar-chart-container {
+    padding: 30px 40px;
+}
+
+.grid-line line {
+    stroke: lightgrey;
+    stroke-opacity: 0.7;
+    shape-rendering: crispEdges;
+}
+
+.grid-line path {
+    stroke-width: 0;
+}
+
+/*.axis .tick {*/
+    /*fill: #bbc7d9;*/
+    /*opacity: 1;*/
+/*}*/
+
+/*.axis line {*/
+    /*fill: none;*/
+    /*stroke: none;*/
+    /*shape-rendering: crispEdges;*/
+/*}*/
+
+/*.axis path {*/
+    /*stroke-width: 0;*/
+/*}*/
+
+.axis{
+    fill:#bbc7d9;
+    opacity: 1;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: none;
+    shape-rendering: crispEdges;
+
+}
+
+.axis text {
+    opacity: 0.5;
+    font-family: ProximaNova;
+    font-size: 14px;
+    font-weight: 600;
+    color: #354961;
 }
