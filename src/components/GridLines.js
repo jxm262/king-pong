@@ -17,7 +17,7 @@ class GridLines extends Component {
 		render() {
 				var translate = "translate(0,"+(this.props.h)+")";
 				return (
-					<g className="y-grid" transform={this.props.gridType=='x'?translate:""} className="grid-line" ref={(node) => { this.node = node; }} >
+					<g className="y-grid" className="grid-line" ref={(node) => { this.node = node; }} >
 					</g>
 				);
 		}

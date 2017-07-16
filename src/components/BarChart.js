@@ -17,6 +17,7 @@ import {
 } from 'd3';
 import GridLines from './GridLines';
 import Axis from './Axis';
+import ToolTip from './ToolTip';
 
 
 
@@ -29,10 +30,7 @@ class BarChart extends Component {
 				this.state = {
 						tooltip: {
 								display: false,
-								data: {
-										key: '',
-										value: ''
-								}
+								data: {}
 						},
 						width: 0
 				};
@@ -42,6 +40,8 @@ class BarChart extends Component {
 
 				const n = 7;    //num samples
 				const m = 2;    //num series
+
+				const that = this;
 
 				var parseDate = timeParse("%m-%d-%Y");
 
@@ -61,9 +61,6 @@ class BarChart extends Component {
 				const margin = this.props.margin;
 				const w = this.props.width - margin.left - margin.right;
 				const h = this.props.height - margin.top - margin.bottom;
-
-				console.log('--w ', w);
-				console.log('--w ', w);
 
 				const w2 = w - this.props.padding.left - this.props.padding.right;
 
@@ -85,24 +82,50 @@ class BarChart extends Component {
 
 				const rect = data.map(function(d, i) {
 						const barWidth = xScale.bandwidth();
+						const x1 = xScale(d.x);
+						const x2 = xScale(d.x) + barWidth + 5;
+						const y = yScale(d.y);
+
+						const props1 = {
+								x: x1 + barWidth / 2,
+								y: y,
+								data: {
+										sent: 3456,
+										asked: 2450
+								}
+						};
+
+						const props2 = {
+								x: x2 + barWidth / 2,
+								y: y,
+								data: {
+										sent: 3456,
+										asked: 2450
+								}
+						};
 
 						return (
 							<g>
 									<rect
-										key={`x1-${i}`}
 										fill="#354961"
 										x={xScale(d.x)}
 										y={yScale(d.y)}
 										height={h-yScale(d.y)}
-										width={barWidth} />
+										width={barWidth}
+										onMouseOver={that.showToolTip.bind(null, props1)}
+										onMouseOut={that.hideToolTip}
+									/>
 
 									<rect
-										key={`x2-${i}`}
+										id={`x2-${i}`}
 										fill="#6a7685"
 										x={xScale(d.x) + barWidth + 5}
 										y={yScale(d.y)}
 										height={h-yScale(d.y)}
-										width={barWidth} />
+										width={barWidth}
+										onMouseOver={that.showToolTip.bind(null, props2)}
+										onMouseOut={that.hideToolTip}
+									/>
 							</g>
 						)
 				});
@@ -137,10 +160,14 @@ class BarChart extends Component {
 									<svg id={this.props.id} width={this.props.width} height={this.props.height}>
 											<g transform={transPadding}>
 													<g transform={transform}>
-															<GridLines h={h} grid={yGrid} gridType="y" />
+															<GridLines grid={yGrid} gridType="y" />
+
 															<Axis h={h} axis={yAxis} dimension="y" />
 															<Axis h={h} axis={xAxis} tx={ xScale.bandwidth() / 2 } ty={h} />
+
 															{rect}
+
+															<ToolTip tooltip={this.state.tooltip} />
 													</g>
 											</g>
 									</svg>
@@ -148,23 +175,49 @@ class BarChart extends Component {
 					</div>
 				);
 		}
+
+		showToolTip = (rectProps) => {
+				this.setState({
+						tooltip: {
+								display: true,
+								data: {
+										sent: rectProps.data.sent,
+										asked: rectProps.data.asked
+								},
+								pos: {
+										x: rectProps.x,
+										y: rectProps.y
+								}
+
+						}
+				});
+		}
+
+		hideToolTip = () => {
+				this.setState({
+						tooltip: {
+								display: false, data: {}
+						}
+				});
+		}
+
 }
 
 BarChart.defaultProps = {
 		id: 'line-chart',
-		width: 905,
+		width: 955,
 		height: 302,
-		padding: {
-				top: 15,
-				right: 15,
-				bottom: 15,
-				left: 15
-		},
 		margin: {
 				top: 0,
-				right: 30,
+				right: 0,
 				bottom: 40,
 				left: 30
+		},
+		padding: {
+				top: 15,
+				right: 35,
+				bottom: 15,
+				left: 15
 		}
 }
 
